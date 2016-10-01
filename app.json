@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/order"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#353535",
+    "navigationBarTitleText": "Do IT Now",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#353535",
+    "selectedColor": "#09BB07",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "index",
+        "iconPath": "img/test1.png",
+        "selectedIconPath": "img/test1.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "order",
+        "iconPath": "img/test2.png",
+        "selectedIconPath": "img/test2.png"
+      }
+    ]
+  },
+  "debug": true
+}

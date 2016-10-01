@@ -1,0 +1,59 @@
+<!--order.wxml-->
+<template name="game-bord">
+  <view 
+    class="game-bord"
+    bindtouchstart="touchstart" 
+    bindtouchmove="touchmove"
+    bindtouchend="touchend">
+    <block wx:for="{{bord}}" wx:for-index="i">
+      <view class= "game-row" >
+        <block wx:for="{{item}}" wx:for-index="j">
+          <view
+            class="game-cell tile-{{bord[i][j]}}">
+            {{bord[i][j] ? bord[i][j]: ""}}
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+</template>
+
+<view class="container">
+  <view class="head-container">
+    <view class="heading" animation="{{animationData}}">2048</view>
+    <view class="scores-container">
+      <view class="score-container">
+        <view class="score-label">SCORE</view>
+        <view class="score-value">{{score}}</view>
+      </view>
+      <view class="best-container">
+        <view class="best-label">BEST</view>
+        <view class="best-value">{{best}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="above-game">
+    <view class="game-intro">
+      Join the numbers and get to the <text class="strong">2048 tile!</text>
+    </view>
+    <view class="restart-button" bindtap="newGame">New Game</view>
+    <!--<view class="restart-button" bindtap="testAnimat">Test</view>-->
+  </view>
+  <template is="game-bord" data="{{bord}}" />
+  <modal
+    title="Game Over!"
+    hidden="{{gameMessage}}"
+    confirm-text="Try again"
+    cancel-text="Cancel"
+    bindconfirm="tryAgain"
+    bindcancel="cancel"
+  />
+  <modal
+    title="You Win!"
+    hidden="{{gameWon}}"
+    confirm-text="Try again"
+    cancel-text="Keep going!"
+    bindconfirm="tryAgain"
+    bindcancel="cancel"
+  />
+</view>

@@ -1,0 +1,150 @@
+/*order.wxss*/
+page {
+    background: #faf8ef;
+    color: #776e65;
+}
+
+.container {
+    padding: 20px;
+    background: #faf8ef;
+    color: #776e65;
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    align-items: unset;
+}
+
+.head-container {
+    font-size: 150%;
+    margin-bottom: 15px;
+    flex: 2;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+.heading {
+    flex: 1;
+    font-weight: bold;
+}
+.scores-container {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    font-weight: bold;
+    font-size: 20px;
+}
+.score-container, .best-container{
+    flex:1;
+    border-radius: 3px;
+    margin: 2px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    background-color: #bbada0;
+    color: white;
+}
+.score-label, .best-label {
+    color: #EEE4DA;
+    font-size: 5px;
+}
+
+.above-game {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+.game-intro {
+    flex: 1;
+    font-size: 14px;
+}
+.restart-button {
+    flex: 1;
+    display: flex;
+    background: #8f7a66;
+    color: #f9f6f2;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+}
+.strong {
+    font-weight: bold;
+}
+.game-message {
+    flex: 1;
+    z-index: 100;
+    opacity: 0.5; 
+    background-color: #f65e3b;
+}
+.game-bord {
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    margin-top: 17px;
+    background: #bbada0;
+    padding: 5px;
+    z-index: 1;
+}
+.game-row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+.game-cell {
+    flex: 1;
+    display: flex;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(238, 228, 218, 0.34902);
+    margin: 5px;
+    font-size: 150%;
+    font-weight: bold;
+}
+.tile-2 {
+    background: #eee4da;
+}
+.tile-4 {
+    background: #ede0c8;
+}
+.tile-8 {
+    background: #f2b179;
+    color: #f9f6f2;
+}
+.tile-16 {
+    background: #f59563;
+    color: #f9f6f2;
+}
+.tile-32 {
+    background: #f67c5f;
+    color: #f9f6f2;
+}
+.tile-64 {
+    background: #f65e3b;
+    color: #f9f6f2;
+}
+.tile-128 {
+    background: #edcf72;
+    color: #f9f6f2;
+}
+.tile-256 {
+    background: #edcc61;
+    color: #f9f6f2;
+}
+.tile-512 {
+    background: #edc850;
+    color: #f9f6f2;
+}
+.tile-1024 {
+    background: #edc53f;
+    color: #f9f6f2;
+}
+.tile-2048 {
+    background: #edc22e;
+    color: #f9f6f2;
+}
+.tile-4096 {
+    background: #3c3a32;
+    color: #f9f6f2;
+}
+
