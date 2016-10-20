@@ -127,7 +127,7 @@ Page({
       this.setData({
         bord: bord,
       });
-    } else if(!this.checkAvailable()) {      
+    } else if(!this.checkAvailable(bord)) {      
       this.setData({
         gameMessage: false
       });
@@ -228,12 +228,11 @@ Page({
 
     return tempBord;
   },
-  checkAvailable: function() {
-    let bord = this.data.bord;
+  checkAvailable: function(bord) {
     let horizontal = false;
     let vertical = false;
     
-    function check(bord) {
+    function check() {
       for (let i = 0; i < bord.length; i++) {
         for (let j = 0; j < bord[i].length - 1; j++ ) {
           if (bord[i][j] && bord[i][j] == bord[i][j+1]) {
@@ -244,9 +243,9 @@ Page({
       return false;
     };
 
-    horizontal = check(bord);
+    horizontal = check();
     bord = this.transpose(bord);
-    vertical = check(bord);
+    vertical = check();
     
     return horizontal || vertical;
 
