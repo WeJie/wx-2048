@@ -41,7 +41,7 @@
   </view>
   <template is="game-bord" data="{{bord}}" />
   <modal
-    title="Game Over!"
+    title="Game over!"
     hidden="{{gameMessage}}"
     confirm-text="Try again"
     cancel-text="Cancel"

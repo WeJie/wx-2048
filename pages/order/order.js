@@ -120,18 +120,22 @@ Page({
   createRandomTile: function() {
     let bord = this.data.bord;
     let emptyTile = this.getEmptyCell();
+    console.log('emptyTile', emptyTile.length);
     if (emptyTile.length) {      
+      console.log("new tile");
       let randomTile = emptyTile[Math.floor(Math.random()*emptyTile.length)];
       bord[randomTile.x][randomTile.y] = Math.random() > 0.1 ? 2 : 4;
 
       this.setData({
         bord: bord,
       });
-    } else if(!this.checkAvailable(bord)) {      
-      this.setData({
-        gameMessage: false
-      });
-    }
+
+      if( emptyTile.length === 1 && !this.checkAvailable(bord)) {      
+        this.setData({
+          gameMessage: false
+        });
+      }
+    } 
   },
   getEmptyCell: function() {
     let bord = this.data.bord;
@@ -247,6 +251,7 @@ Page({
     bord = this.transpose(bord);
     vertical = check();
     
+    console.log("check here", horizontal, vertical);
     return horizontal || vertical;
 
   },
