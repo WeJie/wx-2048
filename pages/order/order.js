@@ -112,8 +112,10 @@ Page({
     }
 
     this.setData(ret);
-    this.createRandomTile();  
-
+    
+    if (ret.isMove) {
+      this.createRandomTile();
+    }
   },
   createRandomTile: function() {
     let bord = this.data.bord;
@@ -146,6 +148,7 @@ Page({
   },
   moveRight: function(bord) {
     let score = this.data.score;
+    let isMove = false;
     for (let i = 0; i < bord.length; i++) {
       for (let j = bord[i].length - 1; j >= 0; j--) {
         for (let k = j-1; k >= 0; k--) {
@@ -156,27 +159,23 @@ Page({
                 bord[i][k] = 0; 
                 this.isWin(bord[i][j]);
                 score += bord[i][j];
+                isMove = true;
               } 
-              else {
-                if (k !== (j-1)) {
-                  bord[i][j-1] = bord[i][k];
-                  bord[i][k] = 0;
-                  j--;
-                }
-              }
               break;
             } else {
               bord[i][j] = bord[i][k];
               bord[i][k] = 0;
+              isMove = true;
             }
           }
         }
       }
     }
-    return { bord: bord, score: score };
+    return { bord: bord, score: score, isMove: isMove};
   },
   moveLeft: function(bord) {
     let score = this.data.score;
+    let isMove = false;
     for (let i = 0; i < bord.length; i++) {
       for (let j = 0; j < bord[i].length; j++) {
         for (let k = j+1; k < bord[i].length; k++) {
@@ -187,17 +186,19 @@ Page({
                 bord[i][k] = 0; 
                 this.isWin(bord[i][j]);
                 score += bord[i][j];
+                isMove = true;
               } 
               break;
             } else {
               bord[i][j] = bord[i][k];
               bord[i][k] = 0;
+              isMove = true;
             }
           }
         }
       }
     }
-    return { bord: bord, score: score };
+    return { bord: bord, score: score, isMove: isMove };
   },
   moveUp: function(bord) {
     bord = this.transpose(bord);
@@ -242,7 +243,7 @@ Page({
       }
       return false;
     };
-    
+
     horizontal = check(bord);
     bord = this.transpose(bord);
     vertical = check(bord);
