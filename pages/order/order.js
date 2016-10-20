@@ -101,6 +101,7 @@ Page({
       "down": this.moveDown,
       "up": this.moveUp,
     }
+    
     let ret = takeMove[move](bord);
     if (ret.score > this.data.best) {
       wx.setStorage({
@@ -111,18 +112,24 @@ Page({
     }
 
     this.setData(ret);
-    this.createRandomTile();
+    this.createRandomTile();  
+
   },
   createRandomTile: function() {
     let bord = this.data.bord;
     let emptyTile = this.getEmptyCell();
-    
-    let randomTile = emptyTile[Math.floor(Math.random()*emptyTile.length)];
-    bord[randomTile.x][randomTile.y] = Math.random() > 0.1 ? 2 : 4;
+    if (emptyTile.length) {      
+      let randomTile = emptyTile[Math.floor(Math.random()*emptyTile.length)];
+      bord[randomTile.x][randomTile.y] = Math.random() > 0.1 ? 2 : 4;
 
-    this.setData({
-      bord: bord,
-    });
+      this.setData({
+        bord: bord,
+      });
+    } else if(!this.checkAvailable()) {      
+      this.setData({
+        gameMessage: false
+      });
+    }
   },
   getEmptyCell: function() {
     let bord = this.data.bord;
@@ -135,17 +142,12 @@ Page({
         }
       }
     }
-    if (emptyTile.length < 1) {
-      this.setData({
-        gameMessage: false
-      });
-    }
     return emptyTile;
   },
   moveRight: function(bord) {
     let score = this.data.score;
     for (let i = 0; i < bord.length; i++) {
-      for (let j = bord[i].length-1; j >= 0; j--) {
+      for (let j = bord[i].length - 1; j >= 0; j--) {
         for (let k = j-1; k >= 0; k--) {
           if (bord[i][k]) {
             if (bord[i][j]) {
@@ -224,6 +226,29 @@ Page({
     }
 
     return tempBord;
+  },
+  checkAvailable: function() {
+    let bord = this.data.bord;
+    let horizontal = false;
+    let vertical = false;
+    
+    function check(bord) {
+      for (let i = 0; i < bord.length; i++) {
+        for (let j = 0; j < bord[i].length - 1; j++ ) {
+          if (bord[i][j] && bord[i][j] == bord[i][j+1]) {
+            return true;          
+          }
+        }
+      }
+      return false;
+    };
+    
+    horizontal = check(bord);
+    bord = this.transpose(bord);
+    vertical = check(bord);
+    
+    return horizontal || vertical;
+
   },
   tryAgain: function() {
     this.setData({
