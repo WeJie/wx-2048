@@ -95,7 +95,7 @@ Page({
   },
   move: function(move) {
     let bord = this.data.bord;
-    takeMove = {
+    let takeMove = {
       "right": this.moveRight,
       "left": this.moveLeft,
       "down": this.moveDown,
@@ -117,7 +117,7 @@ Page({
     let bord = this.data.bord;
     let emptyTile = this.getEmptyCell();
     
-    randomTile = emptyTile[Math.floor(Math.random()*emptyTile.length)];
+    let randomTile = emptyTile[Math.floor(Math.random()*emptyTile.length)];
     bord[randomTile.x][randomTile.y] = Math.random() > 0.1 ? 2 : 4;
 
     this.setData({
